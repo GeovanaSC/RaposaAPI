@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fox Encyclopedia & API</title>
+    <link rel="stylesheet" href="/cli/main.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Cabeçalho com Logo de Raposa -->
+        <header>
+            <div class="logo-area">
+                <span class="logo-icon">🦊</span>
+                <h1>Fox World</h1>
+            </div>
+            <p>A enciclopédia definitiva e galeria interativa das raposas</p>
+            
+            <!-- Faixa branca com as opções de abas -->
+            <nav class="nav-faixa">
+                <a href="#informacoes" class="tab-link ativo" onclick="mudarAba(event, 'informacoes')">Informações</a>
+                <a href="#wikipedia" class="tab-link" onclick="mudarAba(event, 'wikipedia')">Wikipédia</a>
+                <a href="#hobbies" class="tab-link" onclick="mudarAba(event, 'hobbies')">Hobbies</a>
+                <a href="#contatos" class="tab-link" onclick="mudarAba(event, 'contatos')">Contatos</a>
+            </nav>
+        </header>
+
+        <!-- Conteúdo das Abas -->
+        <div class="content">
+            <!-- ABA 1: Informações -->
+            <div id="informacoes" class="tab-conteudo ativo">
+                <h2>🐾 Sobre as Raposas</h2>
+                <p>
+                    As raposas são pequenos e médios mamíferos omnívoros pertencentes a vários géneros da família Canidae. Elas possuem crânios achatados, orelhas triangulares erguidas, focinho pontiagudo e uma cauda longa e espessa.
+                </p>
+                <div class="destaque-caixa">
+                    <p><strong>Habitat:</strong> Encontradas em todos os continentes, adaptando-se facilmente a florestas, pradarias, montanhas e até ambientes urbanos.</p>
+                </div>
+            </div>
+
+            <!-- ABA 2: Wikipédia (Galeria e API) -->
+            <div id="wikipedia" class="tab-conteudo" style="display: none;">
+                <h2>📚 Wikipédia & Galeria em Tempo Real</h2>
+                <p>
+                    Explore imagens autênticas geradas diretamente pela nossa integração com a API de raposas. Cada clique revela um novo registro fascinante da espécie!
+                </p>
+                <button id="btn-gerar">Gerar Nova Raposa 🦊</button>
+                <div id="resultado" class="card">
+                    <p>Clique no botão acima para invocar uma raposinha!</p>
+                </div>
+            </div>
+
+            <!-- ABA 3: Hobbies -->
+            <div id="hobbies" class="tab-conteudo" style="display: none;">
+                <h2>🍂 O que as Raposas Adoram Fazer?</h2>
+                <p>Embora sejam animais selvagens e cautelosos, elas têm comportamentos curiosos e divertidos no dia a dia:</p>
+                <ul class="lista-hobbies">
+                    <li>🎯 <strong>Caça com salto na neve:</strong> Elas usam o campo magnético da Terra combinado com a audição ultraprecisa para saltar de cabeça na neve e capturar presas escondidas.</li>
+                    <li>💤 <strong>Dormir enroladas:</strong> Enrolam-se em formato de círculo usando a cauda fofa como um cobertor natural para se aquecerem.</li>
+                    <li>🏡 <strong>Exploração curiosa:</strong> Adoram investigar novos territórios, criar tocas subterrâneas complexas e brincar com objetos encontrados pelo caminho.</li>
+                </ul>
+            </div>
+
+            <!-- ABA 4: Contatos -->
+            <div id="contatos" class="tab-conteudo" style="display: none;">
+                <h2>💌 Fale Conigo</h2>
+                <p>Projeto desenvolvido com dedicação. Entre em contato através dos canais abaixo:</p>
+                
+                <div class="contatos-card">
+                    <p>📧 <strong>E-mail:</strong> <a href="mailto:gegecorrea30@gmail.com">gegecorrea30@gmail.com</a></p>
+                    <p>📱 <strong>Telefone:</strong> <a href="tel:11970718445">(11) 97071-8445</a></p>
+                    <p>💼 <strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/geovana-souza-corrêa-b4a75b2b" target="_blank">Acessar Perfil no LinkedIn</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Script de Abas e Animações -->
+    <script>
+        // Função para alternar entre as abas na faixa branca
+        function mudarAba(event, idAba) {
+            event.preventDefault();
+            
+            // Oculta todos os conteúdos
+            document.querySelectorAll('.tab-conteudo').forEach(aba => {
+                aba.style.display = 'none';
+            });
+
+            // Remove a classe ativo de todos os links da faixa
+            document.querySelectorAll('.tab-link').forEach(link => {
+                link.classList.remove('ativo');
+            });
+
+            // Mostra a aba selecionada e ativa o botão correspondente
+            document.getElementById(idAba).style.display = 'block';
+            event.currentTarget.classList.add('ativo');
+        }
+
+        // Lógica de consumo da API de raposas com explosão de emojis
+        const btnGerar = document.getElementById('btn-gerar');
+        if (btnGerar) {
+            btnGerar.addEventListener('click', (e) => {
+                const rect = e.target.getBoundingClientRect();
+                const x = rect.left + rect.width / 2;
+                const y = rect.top + rect.height / 2;
+
+                for (let i = 0; i < 12; i++) {
+                    const emoji = document.createElement('div');
+                    emoji.innerText = '🦊';
+                    emoji.style.position = 'fixed';
+                    emoji.style.left = `${x}px`;
+                    emoji.style.top = `${y}px`;
+                    emoji.style.fontSize = '20px';
+                    emoji.style.pointerEvents = 'none';
+                    emoji.style.zIndex = '9999';
+                    document.body.appendChild(emoji);
+
+                    const angulo = Math.random() * Math.PI * 2;
+                    const distancia = 50 + Math.random() * 80;
+                    emoji.animate([
+                        { transform: 'translate(0, 0) scale(0.5)', opacity: 1 },
+                        { transform: `translate(${Math.cos(angulo)*distancia}px, ${Math.sin(angulo)*distancia}px) scale(1.2)`, opacity: 0 }
+                    ], { duration: 800 }).onfinish = () => emoji.remove();
+                }
+
+                const resultadoDiv = document.getElementById('resultado');
+                resultadoDiv.innerHTML = '<p>A carregar raposinha...</p>';
+
+                fetch('/api/fox/image')
+                    .then(res => res.json())
+                    .then(data => {
+                        resultadoDiv.innerHTML = `
+                            <p><strong>Info:</strong> ${data.mensagem}</p>
+                            <img src="${data.imagem_url}" alt="Raposa">
+                        `;
+                    })
+                    .catch(() => {
+                        resultadoDiv.innerHTML = '<p style="color: red;">Erro ao carregar imagem.</p>';
+                    });
+            });
+        }
+    </script>
+</body>
+</html>

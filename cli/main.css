@@ -1,0 +1,224 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600&display=swap');
+
+:root {
+    --primary-color: #ea580c;
+    --primary-hover: #c2410c;
+    --card-bg: rgba(255, 255, 255, 0.92);
+    --text-main: #431407;
+    --text-muted: #7c2d12;
+    --shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.08), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+body {
+    font-family: 'Fredoka', cursive, sans-serif;
+    background-color: #ffedd5;
+    color: var(--text-main);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding: 20px;
+    box-sizing: border-box;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* Fundo animado de raposas e floresta */
+body::before, body::after {
+    content: '🦊 🌲 🦊 🌲 🦊';
+    position: absolute;
+    top: -10%;
+    font-size: 2.2rem;
+    opacity: 0.18;
+    white-space: nowrap;
+    animation: flutuarRaposas 22s linear infinite;
+    pointer-events: none;
+    z-index: 0;
+}
+
+body::after {
+    top: 105%;
+    animation-duration: 28s;
+    animation-direction: reverse;
+    content: '🌲 🦊 🌲 🦊 🌲';
+}
+
+@keyframes flutuarRaposas {
+    from { transform: translateX(-100%); }
+    to { transform: translateX(100vw); }
+}
+
+.container {
+    position: relative;
+    z-index: 1;
+    background: var(--card-bg);
+    backdrop-filter: blur(12px);
+    width: 100%;
+    max-width: 720px;
+    padding: 35px;
+    border-radius: 24px;
+    border: 1px solid rgba(254, 215, 170, 0.9);
+    box-shadow: var(--shadow);
+    box-sizing: border-box;
+}
+
+header {
+    text-align: center;
+    border-bottom: 2px solid #fed7aa;
+    padding-bottom: 20px;
+    margin-bottom: 25px;
+}
+
+/* Estilo da Logo */
+.logo-area {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 5px;
+}
+
+.logo-icon {
+    font-size: 2.2rem;
+    background: #ffedd5;
+    padding: 6px 12px;
+    border-radius: 16px;
+    box-shadow: 0 4px 10px rgba(234, 88, 12, 0.15);
+}
+
+header h1 {
+    font-size: 2.2rem;
+    font-weight: 600;
+    color: #9a3412;
+    margin: 0;
+}
+
+header p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    margin: 5px 0 20px 0;
+}
+
+/* Faixa branca de navegação com as abas */
+.nav-faixa {
+    display: inline-flex;
+    background: #ffffff;
+    padding: 6px;
+    border-radius: 99px;
+    gap: 6px;
+    box-shadow: 0 4px 12px rgba(154, 52, 18, 0.08);
+    border: 1px solid #fed7aa;
+}
+
+.nav-faixa a {
+    text-decoration: none;
+    color: #9a3412;
+    font-size: 0.9rem;
+    font-weight: 500;
+    padding: 8px 18px;
+    border-radius: 99px;
+    transition: all 0.25s ease;
+}
+
+.nav-faixa a:hover {
+    background: #ffedd5;
+    color: #431407;
+}
+
+.nav-faixa a.ativo {
+    background: var(--primary-color);
+    color: white;
+    font-weight: 600;
+    box-shadow: 0 2px 8px rgba(234, 88, 12, 0.3);
+}
+
+.content h2 {
+    color: #9a3412;
+    font-size: 1.3rem;
+    margin-top: 0;
+}
+
+.content p {
+    color: var(--text-muted);
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+/* Caixas de destaque e listas */
+.destaque-caixa {
+    background: #ffedd5;
+    padding: 15px 20px;
+    border-radius: 14px;
+    border-left: 4px solid var(--primary-color);
+    margin-top: 15px;
+}
+
+.lista-hobbies {
+    padding-left: 20px;
+    color: var(--text-muted);
+}
+
+.lista-hobbies li {
+    margin-bottom: 10px;
+    line-height: 1.5;
+}
+
+/* Cartão de Contatos */
+.contatos-card {
+    background: #fff7ed;
+    padding: 20px;
+    border-radius: 16px;
+    border: 1px solid #fed7aa;
+    margin-top: 15px;
+}
+
+.contatos-card p {
+    margin: 10px 0;
+}
+
+.contatos-card a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.contatos-card a:hover {
+    text-decoration: underline;
+}
+
+/* Botão e Galeria */
+button {
+    font-family: 'Fredoka', cursive, sans-serif;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 12px 22px;
+    font-size: 1rem;
+    font-weight: 500;
+    border-radius: 12px;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 15px;
+    box-shadow: 0 4px 12px rgba(234, 88, 12, 0.25);
+    transition: all 0.2s ease;
+}
+
+button:hover {
+    background-color: var(--primary-hover);
+    transform: translateY(-2px);
+}
+
+.card {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.card img {
+    max-width: 100%;
+    max-height: 350px;
+    object-fit: cover;
+    border-radius: 14px;
+    margin-top: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
